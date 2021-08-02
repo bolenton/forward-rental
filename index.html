@@ -162,7 +162,7 @@
                                 <option value="">Select your car type</option>
                                 <option value="img/vehicle1.jpg">Porsche Cayenne</option>
                                 <option value="img/vehicle2.jpg">Mercedes-Benz SL-Class</option>
-                                <option value="img/vehicle3.jpg">Bentley COntinental</option>
+                                <option value="img/vehicle3.jpg">Bentley Continental</option>
                                 <option value="img/vehicle4.jpg">Jeep Grand Cherokee L</option>
                                 <option value="img/vehicle5.jpg">GMC Yukon</option>
                                 <option value="img/vehicle6.jpg">Tesla Model S</option>
@@ -1313,19 +1313,18 @@
         <div class="col-md-7 col-xs-12 pull-left">
             <p class="contact-info">You have any questions or need additional information? <br>
                 <span class="address"><span class="highlight">Address:</span>  2200 Los Rios Blvd, Plano TX, 75074</span></p>
-            <form action="#" method="post" id="contact-form" name="contact-form">
+            <form method="post" id="contact-form" name="contact-form">
                 <input type="hidden" name="action" value="send_contact_form"/>
 
-                <div class="alert hidden" id="contact-form-msg"></div>
-
+                <div class="alert hidden" id="contact-form-msg">.</div>
                 <div class="form-group">
-                    <input type="text" class="form-control first-name text-field" name="first-name" placeholder="First Name:">
-                    <input type="text" class="form-control last-name text-field" name="last-name" placeholder="Last Name:">
+                    <input type="text" class="form-control first-name text-field" name="firstName" placeholder="First Name:">
+                    <input type="text" class="form-control last-name text-field" name="lastName" placeholder="Last Name:">
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="form-group">
-                    <input type="tel" class="form-control telephone text-field" name="telephone" placeholder="Telephone:">
+                    <input type="tel" class="form-control telephone text-field" name="phone" placeholder="Telephone:">
                 </div>
 
                 <div class="form-group">
@@ -1337,8 +1336,6 @@
                 </div>
 
                 <input type="submit" class="btn submit-message" name="submit-message" value="Submit Message">
-
-
             </form>
         </div>
 
@@ -1377,9 +1374,7 @@
 <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="#" method="post" id="checkout-form" name="checkout-form">
-                <input type="hidden" name="action" value="send_inquiry_form"/>
-
+            <form method="post" id="checkout-form" name="checkout-form">
                 <!-- Modal header start -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1405,19 +1400,19 @@
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 <h4 class="info-box-title">Pick-Up Time</h4>
                                 <p class="info-box-description"><span id="pick-up-date-ph"></span> at <span id="pick-up-time-ph"></span></p>
-                                <input type="hidden" name="pick-up" id="pick-up" value="">
+                                <input type="hidden" name="pickUpTime" id="pick-up" value="">
                             </div>
                             <div class="info-box">
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 <h4 class="info-box-title">Drop-Off Time</h4>
                                 <p class="info-box-description"><span id="drop-off-date-ph"></span> at <span id="drop-off-time-ph"></span></p>
-                                <input type="hidden" name="drop-off" id="drop-off" value="">
+                                <input type="hidden" name="dropOffTime" id="drop-off" value="">
                             </div>
                             <div class="info-box">
                                 <span class="glyphicon glyphicon-map-marker"></span>
                                 <h4 class="info-box-title">Pick-Up Location</h4>
                                 <p class="info-box-description" id="pickup-location-ph"></p>
-                                <input type="hidden" name="pickup-location" id="pickup-location" value="">
+                                <input type="hidden" name="pickUpLocation" id="pickup-location" value="">
                             </div>
                             <div class="info-box">
                                 <span class="glyphicon glyphicon-map-marker"></span>
@@ -1429,7 +1424,7 @@
 
                         <div class="vehicle-info">
                             <h3>CAR: <span id="selected-car-ph"></span></h3> <a href="#vehicles" class="scroll-to">[ Vehicle Models ]</a>
-                            <input type="hidden" name="selected-car" id="selected-car" value="">
+                            <input type="hidden" name="car" id="selected-car" value="">
                             <div class="clearfix"></div>
                             <div class="vehicle-image">
                                 <img class="img-responsive" id="selected-vehicle-image" src="img/vehicle1.jpg" alt="Vehicle">
@@ -1451,15 +1446,15 @@
                         <h3>PERSONAL INFORMATION</h3>
                         <div class="form-group left">
                             <label for="first-name">First Name:</label>
-                            <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Enter your first name">
+                            <input type="text" class="form-control" name="firstName" id="first-name" placeholder="Enter your first name">
                         </div>
                         <div class="form-group right">
                             <label for="last-name">Last Name:</label>
-                            <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Enter your last name">
+                            <input type="text" class="form-control" name="lastName" id="last-name" placeholder="Enter your last name">
                         </div>
                         <div class="form-group left">
                             <label for="phone-number">Phone Number:</label>
-                            <input type="text" class="form-control" name="phone-number" id="phone-number" placeholder="Enter your phone number">
+                            <input type="text" class="form-control" name="phone" id="phone-number" placeholder="Enter your phone number">
                         </div>
                         <div class="form-group right age">
                             <label for="age">Age:</label>
@@ -1553,7 +1548,7 @@
                         </div>
                         <div class="form-group left">
                             <label for="email-address">Email Address:</label>
-                            <input type="email" class="form-control" name="email-address" id="email-address" placeholder="Enter your email address">
+                            <input type="email" class="form-control" name="email" id="email-address" placeholder="Enter your email address">
                         </div>
                         <div class="form-group right">
                             <label for="email-address-confirm">Confirm Email Address:</label>
@@ -1581,15 +1576,6 @@
                     </div> -->
                     <!-- Checkout Address Info end -->
 
-                    <div class="newsletter">
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <input id="check1" type="checkbox" name="newsletter" value="yes">
-                                <label for="check1">Please send me latest news and updates</label>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
                 <!-- Modal body end -->
 

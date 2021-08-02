@@ -322,28 +322,39 @@ $( "#contact-form" ).submit(function() {
 
   $('#contact-form input[type=submit]').attr('disabled', 'disabled');
 
+  // var test = Json.stringify($("#contact-form"));
+  // console.log(test);
+
+  var jsonData = {};
+  var formData = $("#contact-form").serializeArray();
+  $.each(formData, function() {
+    if (jsonData[this.name]) {
+      if (!jsonData[this.name].push) {
+        jsonData[this.name] = [jsonData[this.name]];
+      }
+      jsonData[this.name].push(this.value || '');
+    } else {
+      jsonData[this.name] = this.value || '';
+    } 
+  });
+
+
   $.ajax({
     type: "POST",
-    url: "php/index.php",
-    data: $("#contact-form").serialize(),
+    url: "https://rentalcarformapi.azurewebsites.net/api/rent/contactforward",
+    data: JSON.stringify(jsonData),
     dataType: "json",
+    contentType:'application/json',
     success: function(data) {
-
-      if('success' == data.result)
-      {
         $('#contact-form-msg').css('visibility','visible').hide().fadeIn().removeClass('hidden').addClass('alert-success');
-        $('#contact-form-msg').html(data.msg[0]);
+        $('#contact-form-msg').html("Someone will reach out to you shortly.");
         $('#contact-form input[type=submit]').removeAttr('disabled');
         $('#contact-form')[0].reset();
-      }
-
-      if('error' == data.result)
-      {
-        $('#contact-form-msg').css('visibility','visible').hide().fadeIn().removeClass('hidden').addClass('alert-danger');
-        $('#contact-form-msg').html(data.msg[0]);
-        $('#contact-form input[type=submit]').removeAttr('disabled');
-      }
-
+    }, 
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      $('#contact-form-msg').css('visibility','visible').hide().fadeIn().removeClass('hidden').addClass('alert-danger');
+      $('#contact-form-msg').html(XMLHttpRequest.responseJSON.errors[Object.keys(XMLHttpRequest.responseJSON.errors)[0]][0]);
+      $('#contact-form input[type=submit]').removeAttr('disabled');
     }
   });
 
@@ -401,7 +412,7 @@ $( "#car-select-form" ).submit(function() {
 
     $("#drop-off-date-ph").html(dropOffDate);
     $("#drop-off-time-ph").html(dropOffTime);
-    $("#drop-off").val(dropOffDate+' at '+dropOffTime);
+    $("#drop-off").val(dropOffDate+' at '+dropOffTime);;
 
     $('#checkoutModal').modal();
   }
@@ -426,17 +437,28 @@ $( "#checkout-form" ).submit(function() {
 
   $('#checkout-form input[type=submit]').attr('disabled', 'disabled');
 
+  var jsonData = {};
+  var formData = $("#checkout-form").serializeArray();
+  $.each(formData, function() {
+    if (jsonData[this.name]) {
+      if (!jsonData[this.name].push) {
+        jsonData[this.name] = [jsonData[this.name]];
+      }
+      jsonData[this.name].push(this.value || '');
+    } else {
+      jsonData[this.name] = this.value || '';
+    } 
+  });
+
   $.ajax({
     type: "POST",
-    url: "php/index.php",
-    data: $("#checkout-form").serialize(),
+    url: "https://rentalcarformapi.azurewebsites.net/api/rent/reserveforward",
+    data: JSON.stringify(jsonData),
     dataType: "json",
+    contentType:'application/json',
     success: function(data) {
-
-      if('success' == data.result)
-      {
         $('#checkout-form-msg').css('visibility','visible').hide().fadeIn().removeClass('hidden').addClass('alert-success');
-        $('#checkout-form-msg').html(data.msg[0]);
+        $('#checkout-form-msg').html("Someone will be reaching out shortly.");
         $('#checkout-form input[type=submit]').removeAttr('disabled');
 
         setTimeout(function(){
@@ -446,17 +468,12 @@ $( "#checkout-form" ).submit(function() {
 
           $('#checkout-form')[0].reset();
           $('#car-select-form')[0].reset();
-        }, 5000);
-
-      }
-
-      if('error' == data.result)
-      {
+        }, 3000);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
         $('#checkout-form-msg').css('visibility','visible').hide().fadeIn().removeClass('hidden').addClass('alert-danger');
-        $('#checkout-form-msg').html(data.msg[0]);
+        $('#checkout-form-msg').html(XMLHttpRequest.responseJSON.errors[Object.keys(XMLHttpRequest.responseJSON.errors)[0]][0]);
         $('#checkout-form input[type=submit]').removeAttr('disabled');
-      }
-
     }
   });
 
