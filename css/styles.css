@@ -250,7 +250,7 @@ header.large .brand {
 /* Teaser
 -------------------------------------*/
 #teaser {
-  height: 600px;
+  height: 600px !important;
   padding: 60px 0;
   background-color: #ffbf00;
   background: linear-gradient(to bottom, #ffbf00 0%, #fcd45f 50%, #ffbf00 100%);
