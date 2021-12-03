@@ -85,8 +85,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <!-- Nav-Links start -->
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- <li><a style="color: red;" href="https://forward-auto-rental-inc.us5.hqrentals.app/public/car-rental/reservations/step1?new=1&brand=3qojwrny-afvd-11mk-fqwp-ayblwmpt7kf2" target="blank" s>Reserve Now</a></li> -->
-                            <li><a style="color: red;" class="reserve-button">Reserve Now</a></li>
+                            <li><a style="color: red;" href="https://forward-auto-rental-inc.us5.hqrentals.app/public/car-rental/reservations/step1?new=1&brand=3qojwrny-afvd-11mk-fqwp-ayblwmpt7kf2">Reserve Now</a></li>
+                            <!-- <li><a style="color: red;" class="reserve-button">Reserve Now</a></li> -->
                             <li><a href="#services" class="scroll-to">Services</a></li>
                             <li><a href="#vehicles" class="scroll-to">Vehicle Models</a></li>
                             <li><a href="#partners" class="scroll-to">About Us</a></li>
@@ -1471,15 +1471,17 @@
 
 <script>
     $(document).ready(function(){
-        $(".reserve-button").click(function(){
+        // $(".reserve-button").click(function(){
           
-            $("#carSpecs").hide();
-            $("#reserveApp").show();
+        //     $("#carSpecs").hide();
+        //     $("#reserveApp").show();
 
-            element = document.getElementById("vehicles");
-            element.scrollIntoView();
-        });
-
+        //     element = document.getElementById("vehicles");
+        //     element.scrollIntoView();
+        // });
+        $(".reserve-button").click(function(){
+            $(location).attr('href', "https://forward-auto-rental-inc.us5.hqrentals.app/public/car-rental/reservations/step1?new=1&brand=3qojwrny-afvd-11mk-fqwp-ayblwmpt7kf2");
+      });
         
     });
 
